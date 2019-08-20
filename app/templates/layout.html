@@ -1,0 +1,62 @@
+<!-- layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Exoplanet Visualizations" />
+    <meta name="author" content="Captain Planet" />
+
+    <title>{{ title }}</title>
+    <link
+      href="{{ url_for('static', filename='css/dist/css/modern.css') }}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/758587764e.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .sidebar-brand svg {
+        height: 19px;
+        width: 52px;
+        margin-right: 0.1rem;
+      }
+      .timeline-item:before {
+        left: 2.5px;
+        height: 15px;
+        width: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      {% include 'sidebar.html' ignore missing %}
+      <div class="main d-flex flex-column">
+        <main class="content flex-grow-1">
+          {% block content %}{% endblock %}
+        </main>
+        {% include 'footer.html' ignore missing %}
+      </div>
+    </div>
+    <script>
+      var monthly;
+      $.getJSON("/json_monthly", month_callback);
+
+      function month_callback(data) {
+        monthly = data;
+      };
+    </script>
+    <script src="{{ url_for('static', filename='css/dist/js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/linechart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/areachart.js') }}"></script>
+  </body>
+</html>
