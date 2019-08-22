@@ -1,6 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from datetime import datetime, date
 from app import app, db
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
 
 
 
@@ -37,7 +39,5 @@ def json_monthly():
 
 @app.route('/column/<title>')
 def column(title):
-
-
-
-    return 0;
+    sql_query = db.session.query(planets_table.pl_name).all()
+    return jsonify(sql_query)
