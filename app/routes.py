@@ -44,9 +44,7 @@ def json_monthly():
 def column(title):
     sql_query = db.session.query(Planets.rowid,
                                  Planets.pl_name,
-                                 Planets.pl_hostname).\
-                filter(Planets.pl_name == title).\
-                order_by(Planets.rowid).all()
+                                 Planets.pl_hostname,
+                                 f'planets.{title}').all()
     sql_query_dict = [row._asdict() for row in sql_query]
-
     return jsonify(results=sql_query_dict)
