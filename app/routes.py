@@ -48,3 +48,20 @@ def column(title):
                                  f'planets.{title}').all()
     sql_query_dict = [row._asdict() for row in sql_query]
     return jsonify(results=sql_query_dict)
+
+
+@app.route('/dchartcolumns')
+def columns():
+    sql_query = db.session.query(Planets.st_teff,
+                                 Planets.st_logg,
+                                 Planets.pl_eqt,
+                                 Planets.st_mass,
+                                 Planets.st_rad).all()
+    columns = [row._asdict() for row in sql_query]
+    #return jsonify(results=sql_query_dict)
+    return jsonify(columns)
+
+
+@app.route('/ProjectPlanets')
+def ProjectPlanets():
+    return render_template('D3.html', title='Planets!')
