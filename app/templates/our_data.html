@@ -1,0 +1,35 @@
+{% extends 'layout.html' %} {% block content %}
+<h1 class="h1">Our Data</h1>
+<div class="row">
+  <div class="col-9">
+    <p class="lead">
+      Below is a searchable table of all the data we used in our various charts.
+    </p>
+    <p class="lead">
+      The data is sourced from the
+      <a
+        href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=planets"
+        >NASA Exoplanet Archive</a
+      >, which is the most up to date database available of all known planets.
+    </p>
+    <p>
+      We grabbed a CSV of the data and uploaded it into our Heroku cloud-hosted
+      PostgreSQL (simply uisng table plus). We then reflect the data into memory
+      using Flask-SQLAlchemy, create a json-ified route to access it via Flask,
+      load it below via Jinja, and make into a pretty table using Bootstrap and
+      the 'DataTables' JS library.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="h3">Exoplanets Table</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

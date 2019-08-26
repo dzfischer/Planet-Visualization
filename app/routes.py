@@ -48,3 +48,7 @@ def column(title):
                                  f'planets.{title}').all()
     sql_query_dict = [row._asdict() for row in sql_query]
     return jsonify(results=sql_query_dict)
+
+@app.route('/our_data')
+def our_data():
+    return render_template('our_data.html', title='Our Data')
