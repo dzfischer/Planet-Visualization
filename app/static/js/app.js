@@ -166,10 +166,21 @@ function visualize(theData) {
   var curY = "pl_eqt";
 
   theData_Mod = theData;
+
+  var theCircles = svg
+    .selectAll("g theCircles")
+    .data(theData_Mod)
+    .enter();
+
   theData_Mod = theData_Mod.filter(function(d) {
-    return d[curX];
+    return ((d[curX] > 0) && (d[curY] > 0));
   });
-  //theData_Mod=theData_Mod.filter(function(d){return d[curY]})
+
+
+  theCircles.selectAll(".g theCircles").remove();
+  // theCircles.data(theData_Mod)
+
+  // theData_Mod=theData_Mod.filter(function(d){return d[curY] != 0})
 
   // We also save empty variables for our the min and max values of x and y.
   // this will allow us to alter the values in functions and remove repetitious code.
@@ -340,15 +351,13 @@ function visualize(theData) {
     .attr("transform", "translate(" + (margin + labelArea) + ", 0)");
 
   // Now let's make a grouping for our dots and their labels.
-  var theCircles = svg
-    .selectAll("g theCircles")
-    .data(theData_Mod)
-    .enter();
+
 
   // We append the circles for each row of data (or each state, in this case).
+
   theCircles
     .append("circle")
-    //.filter(function(d){return d[curX]})
+    // .filter(function(d){return d[curX]})
     // These attr's specify location, size and class.
     .attr("cx", function(d) {
       return xScale(d[curX]);
@@ -378,9 +387,10 @@ function visualize(theData) {
   // With the circles on our graph, we need matching labels.
   // Let's grab the state abbreviations from our data
   // and place them in the center of our dots.
+
   theCircles
     .append("text")
-    //.filter(function(d){return d[curX]})
+    // .filter(function(d){return d[curX]})
     // We return the abbreviation to .text, which makes the text the abbreviation.
     .text(function(d) {
       return d.abbr;
@@ -442,6 +452,17 @@ function visualize(theData) {
         minX();
         maxX();
 
+        // asdf trying to reset
+        theData_Mod = theData;
+        console.log(`curX is ${curX}`)
+        theData_Mod = theData_Mod.filter(function(d) {
+          return (d[curX] > 0) && (d[curY] > 0);
+        });
+
+        // theCircles
+        //   .data(theData_Mod)
+        //   .enter();
+
         // Update the domain of x.
         xScale.domain([xMin, xMax]);
 
@@ -453,28 +474,33 @@ function visualize(theData) {
           .call(xAxis);
 
         // With the axis changed, let's update the location of the state circles.
-        d3.selectAll("circle").each(function() {
-          // Each state circle gets a transition for it's new attribute.
-          // This will lend the circle a motion tween
-          // from it's original spot to the new location.
-          d3.select(this)
-            .transition()
-            .attr("cx", function(d) {
-              return xScale(d[curX]);
-            })
-            .duration(300);
-        });
+        // d3.selectAll("circle").each(function() {
+        //   // Each state circle gets a transition for it's new attribute.
+        //   // This will lend the circle a motion tween
+        //   // from it's original spot to the new location.
+        //   d3.select(this)
+        //     .transition()
+        //     .attr("cx", function(d) {
+        //       return xScale(d[curX]);
+        //     })
+        //     .duration(300);
+        // });
+
+        d3.selectAll("circle").remove();
 
         // We need change the location of the state texts, too.
-        d3.selectAll(".stateText").each(function() {
-          // We give each state text the same motion tween as the matching circle.
-          d3.select(this)
-            .transition()
-            .attr("dx", function(d) {
-              return xScale(d[curX]);
-            })
-            .duration(300);
-        });
+        // d3.selectAll(".stateText").each(function() {
+        //   // We give each state text the same motion tween as the matching circle.
+        //   d3.select(this)
+        //     .transition()
+        //     .attr("dx", function(d) {
+        //       return xScale(d[curX]);
+        //     })
+        //     .duration(300);
+        // });
+
+        d3.selectAll(".stateText").remove();
+
 
         // Finally, change the classes of the last active label and the clicked label.
         labelChange(axis, self);
@@ -486,6 +512,12 @@ function visualize(theData) {
         //yMinMax();
         minY();
         maxY();
+
+        theData_Mod = theData;
+        console.log(`curY is ${curY}`)
+        theData_Mod = theData_Mod.filter((d)=> {
+          return (d[curY] > 0) && (d[curX] > 0);
+        });
 
         // Update the domain of y.
         yScale.domain([yMin, yMax]);
@@ -524,6 +556,73 @@ function visualize(theData) {
         // Finally, change the classes of the last active label and the clicked label.
         labelChange(axis, self);
       }
+
+
+      theCircles
+        .append("circle")
+        // .filter(function(d){return d[curX]})
+        // These attr's specify location, size and class.
+        .attr("cx", function(d) {
+          return xScale(d[curX]);
+        })
+        .attr("cy", function(d) {
+          return yScale(d[curY]);
+        })
+        .attr("r", circRadius)
+        .style("fill", d3.color("#8800cc"))
+        .attr("class", function(d) {
+          return "stateCircle " + d.abbr;
+        })
+        // Hover rules
+        .on("mouseover", function(d) {
+          // Show the tooltip
+          toolTip.show(d, this);
+          // Highlight the state circle's border
+          d3.select(this).style("stroke", "#0000");
+        })
+        .on("mouseout", function(d) {
+          // Remove the tooltip
+          toolTip.hide(d);
+          // Remove highlight
+          d3.select(this).style("stroke", "#e3e3e3");
+        });
+
+      // With the circles on our graph, we need matching labels.
+      // Let's grab the state abbreviations from our data
+      // and place them in the center of our dots.
+
+      theCircles
+        .append("text")
+        // .filter(function(d){return d[curX]})
+        // We return the abbreviation to .text, which makes the text the abbreviation.
+        .text(function(d) {
+          return d.abbr;
+        })
+        // Now place the text using our scale.
+        .attr("dx", function(d) {
+          return xScale(d[curX]);
+        })
+        .attr("dy", function(d) {
+          // When the size of the text is the radius,
+          // adding a third of the radius to the height
+          // pushes it into the middle of the circle.
+          return yScale(d[curY]) + circRadius / 2.5;
+        })
+        .attr("font-size", circRadius)
+        .attr("class", "stateText")
+        // Hover Rules
+        .on("mouseover", function(d) {
+          // Show the tooltip
+          toolTip.show(d);
+          // Highlight the state circle's border
+          d3.select("." + d.abbr).style("stroke", "#323232");
+        })
+        .on("mouseout", function(d) {
+          // Remove tooltip
+          toolTip.hide(d);
+          // Remove highlight
+          d3.select("." + d.abbr).style("stroke", "#e3e3e3");
+        });
     }
   });
 
