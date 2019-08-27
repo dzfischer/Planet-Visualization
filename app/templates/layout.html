@@ -17,12 +17,10 @@
       type="text/css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="static/css/DynamicCharts/style.css" />
+    <link rel="stylesheet" href="static/css/DynamicCharts/d3Style.css" />
+    <script src="{{ url_for('static', filename='css/dist/js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/758587764e.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
     <style>
       .sidebar-brand svg {
         height: 19px;
@@ -47,16 +45,6 @@
         {% include 'footer.html' ignore missing %}
       </div>
     </div>
-    <script>
-      var monthly;
-      $.getJSON("/json_monthly", month_callback);
-
-      function month_callback(data) {
-        monthly = data;
-      };
-    </script>
-    <script src="{{ url_for('static', filename='css/dist/js/app.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/linechart.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/areachart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ourdata.js') }}"></script>
   </body>
 </html>
