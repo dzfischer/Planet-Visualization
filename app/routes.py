@@ -49,11 +49,9 @@ def column(title):
     sql_query_dict = [row._asdict() for row in sql_query]
     return jsonify(results=sql_query_dict)
 
-<<<<<<< HEAD
 @app.route('/our_data')
 def our_data():
     return render_template('our_data.html', title='Our Data')
-=======
 
 @app.route('/dchartcolumns')
 def columns():
@@ -70,4 +68,3 @@ def columns():
 @app.route('/ProjectPlanets')
 def ProjectPlanets():
     return render_template('D3.html', title='Planets!')
->>>>>>> 52c73fad661b26a5e0a144c422877e23fc1f07b8
