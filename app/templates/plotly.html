@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <h1 class="h1 font-weight-bold">Project Planet</h1>
+      <h2 class="h2 text-muted">Planetary Discovery Over Time</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12  col-md-9">
+      <div class="mt-2" id="bar"><!-- Chart will show here--></div>
+      <select class="mt-2" id="selDataset" onchange="getData(this.value)">
+        <option value="planetdiscovery_dist">Explored Distance</option>
+        <option value="planetdiscovery_number">Planet Discovery</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12  col-md-9">
+      <div class="article">
+        <h2></h2>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/plotly.js') }}"
+></script>
+{% endblock %}

@@ -27,6 +27,8 @@
     />
     <script src="{{ url_for('static', filename='css/dist/js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/758587764e.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
     <style>
       .sidebar-brand svg {
         height: 19px;
@@ -45,6 +47,7 @@
     <div class="wrapper">
       {% include 'sidebar.html' ignore missing %}
       <div class="main d-flex flex-column">
+        {% include 'navbar.html' ignore missing %}
         <main class="content flex-grow-1">
           {% block content %}{% endblock %}
         </main>

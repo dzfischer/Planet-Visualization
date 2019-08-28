@@ -1,23 +1,86 @@
-{% extends 'layout.html' %} 
-
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 <div class="row mb-3">
-  <div class="col-md-6">
-    <h1 class="h1 mb-3">Planet Visualizations</h1>
+  <div class="col-md-12">
+    <h1 class="h1 mb-3">Exoplanet Discovery & Visualizations</h1>
+    <h2 class="h2 text-muted">Group Project 2</h2>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4 col-md-6 col-12">
+  <div class="col-lg-5 col-md-6 col-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">We Will Visualize Stuff Here</h5>
+        <h3 class="card-title h3 mb-0">Brief Project Summary</h3>
       </div>
       <div class="card-body">
         <p class="card-text">
-          And a little more stuff here too. We're working on it!
+          NASA has a fairly extensive database of exoplanets & requisite data
+          about them. We thought this would be an ideal data set to use in our
+          visualizations.
+        </p>
+        <p class="card-text">
+          We used the below libraries to take this data set and create some
+          charts to explore it with. We also thought it would be neat to create
+          a searchable table of all this data, which can be found by following
+          the "Explore" link to the left
         </p>
       </div>
     </div>
   </div>
+  <div class="col-lg-5 col-md-6 col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title h3 mb-0">Group Members</h3>
+      </div>
+      <div class="card-body">
+        <div class="media">
+          <i class="fas fa-users fa-2x"></i>
+          <div class="media-body">
+            <ul class="card-text">
+              <li>Daniel Fischer</li>
+              <li>Josenfia Amaro</li>
+              <li>Yashaswi Puttaswamy</li>
+              <li>Ryan Joyce</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title h3 mb-0">Libraries Used</h3>
+      </div>
+      <div class="card-body">
+        <div class="media">
+          <span class="mr-3">
+            <i class="fas fa-book fa-2x"></i>
+          </span>
+          <div class="media-body">
+            <h4 class="h4">Python</h4>
+            <ul class="mb-4">
+              <li>Flask</li>
+              <li>Flask-SQLAlchemy</li>
+              <li>SQLAlchemy</li>
+            </ul>
+            <h4 class="h4">JavaScript</h4>
+            <ul class="mb-4">
+              <li>D3</li>
+              <li>Plotly</li>
+              <li>ChartJS</li>
+              <li>jQuery</li>
+              <li>DataTables</li>
+            </ul>
+            <h4 class="h4">DB Hosting</h4>
+            <ul>
+              <li>Heroku</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

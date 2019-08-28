@@ -6,7 +6,7 @@
     >
     <hr class="mt-2" />
     <ul class="sidebar-nav">
-      <li class="sidebar-header">Planet Stuff</li>
+      <li class="sidebar-header">Exoplanet Information</li>
       <li class="sidebar-item">
         <a
           href="#portfolios"
@@ -15,7 +15,7 @@
           aria-expanded="false"
         >
           <i class="fas fa-images"></i>
-          <span class="align middle">Life</span>
+          <span class="align middle">Exoplanets</span>
         </a>
         <ul
           id="portfolios"
@@ -23,14 +23,17 @@
           style
         >
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ url_for('ProjectPlanets')}}">Yasha</a>
+            <a class="sidebar-link" href="{{ url_for('ProjectPlanets')}}">Stellar Relationships</a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">Delete All Life</a>
+            <a class="sidebar-link" href="{{ url_for('PlotlyProjectPlanets')}}">Discoveries Over Time</a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#">Another Data Page</a>
           </li>
         </ul>
       </li>
-      <li class="sidebar-header">Galaxy Stuff</li>
+      <li class="sidebar-header">Data Sourcing</li>
       <li class="sidebar-item">
         <a
           href="#consumption"
@@ -39,7 +42,7 @@
           aria-expanded="false"
         >
           <i class="fas fa-cash-register"></i>
-          <span class="align middle">Unexplained</span>
+          <span class="align middle">Explore</span>
         </a>
         <ul
           id="consumption"
@@ -47,44 +50,9 @@
           style
         >
           <li class="sidebar-item">
-            <a class="sidebar-link" href="#">Dark Matter</a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#">Sagittarius A*</a>
+            <a class="sidebar-link" href="{{ url_for('our_data') }}">View Our Data</a>
           </li>
         </ul>
-        <a
-          href="#"
-          data-toggle="collapse"
-          class="sidebar-link collapsed"
-          aria-expanded="false"
-        >
-          <i class="fas fa-chart-line"></i>
-          <span class="align middle">Stuff</span>
-        </a>
-      </li>
-
-      <li class="sidebar-header">Universe Stuff</li>
-      <li class="sidebar-item">
-        <a
-          href="#"
-          data-toggle="collapse"
-          class="sidebar-link collapsed"
-          aria-expanded="false"
-        >
-          <i class="fas fa-hand-holding-usd"></i>
-          <span class="align middle">The Big Bang</span>
-        </a>
-        <a
-          href="#"
-          data-toggle="collapse"
-          class="sidebar-link collapsed"
-          aria-expanded="false"
-        >
-          <i class="fas fa-file-contract"></i>
-          <span class="align-middle">Quantum Unification</span>
-        </a>
-      </li>
     </ul>
   </div>
 </nav>
