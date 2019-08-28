@@ -1,12 +1,15 @@
 $(function() {
-  $.getJSON("/dchartcolumns", function(some_data) {
+  $.getJSON("/datatable", function(some_data) {
     $("#planets_data").DataTable({
       data: some_data,
       columns: [
-        { data: "pl_eqt", title: "pl_eqt" },
-        { data: "st_logg", title: "st_logg" },
-        { data: "st_mass", title: "st_mass" },
-        { data: "st_teff", title: "st_teff" }
+        { data: "pl_name", title: "Planet Name" },
+        { data: "pl_hostname", title: "Host Star" },
+        { data: "st_teff", title: "Star Temp (K)" },
+        { data: "st_logg", title: "Star Gravity" },
+        { data: "pl_eqt", title: "Planet Temp (K)" },
+        { data: "st_mass", title: "Star Mass" },
+        { data: "st_rad", title: "Star Radius" }
       ]
     });
   });

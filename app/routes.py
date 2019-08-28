@@ -112,3 +112,15 @@ def plotlydata_1():
     }
 
     return jsonify(trace)
+
+@app.route('/datatable')
+def datatable():
+    sql_query = db.session.query(Planets.pl_name,
+                                 Planets.pl_hostname,
+                                 Planets.st_teff,
+                                 Planets.st_logg,
+                                 Planets.pl_eqt,
+                                 Planets.st_mass,
+                                 Planets.st_rad).all()
+    sql_query_dict = [row._asdict() for row in sql_query]
+    return jsonify(sql_query_dict)
